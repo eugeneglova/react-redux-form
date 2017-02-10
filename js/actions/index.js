@@ -19,5 +19,7 @@ const addItemData = data => ({
 });
 
 export const addItem = data => dispatch => {
-	dispatch(addItemData(data));
+	dispatch(addItemData(data)).catch(() => {
+		dispatch(fetchByName('data'));
+	});
 };
