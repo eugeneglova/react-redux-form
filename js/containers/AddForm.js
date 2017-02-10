@@ -15,17 +15,17 @@ const AddForm = connect(({ add }) => add)(
 						<td>
 							<Label text="Title" required={true} />
 							<br />
-							<Input stateKey="title" />
+							<Input field="title" />
 						</td>
 						<td>
 							<Label text="From" required={true} />
 							<br />
-							<Input stateKey="fromHH" /> : <Input stateKey="fromMM" />
+							<Input field="fromHH" /> : <Input field="fromMM" />
 						</td>
 						<td>
 							<Label text="To" required={true} />
 							<br />
-							<Input stateKey="toHH" /> : <Input stateKey="toMM" />
+							<Input field="toHH" /> : <Input field="toMM" />
 						</td>
 						<td>
 							<label>
@@ -37,7 +37,7 @@ const AddForm = connect(({ add }) => add)(
 							<Label text="Type" required={true} />
 							<br />
 							<Select
-								stateKey="type"
+								field="type"
 								multiple={true}
 								title="Please select [Type]"
 								data={['All', 'Deposits', 'Withdrawals']}
@@ -47,7 +47,7 @@ const AddForm = connect(({ add }) => add)(
 							<Label text="Day" required={true} />
 							<br />
 							<Select
-								stateKey="day"
+								field="day"
 								multiple={true}
 								title="Please select [Day]"
 								data={['All', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']}
@@ -56,12 +56,12 @@ const AddForm = connect(({ add }) => add)(
 						<td>
 							<Label text="Min Amount" />
 							<br />
-							<Input stateKey="minAmount" />
+							<Input field="minAmount" />
 						</td>
 						<td>
 							<Label text="Max Amount" />
 							<br />
-							<Input stateKey="maxAmount" />
+							<Input field="maxAmount" />
 						</td>
 						<td>
 							<Label text="Trading Platform" />
@@ -77,7 +77,7 @@ const AddForm = connect(({ add }) => add)(
 							<Label text="Platform Server" />
 							<br />
 							<Select
-								stateKey="server"
+								field="server"
 								multiple={true}
 								title="[Servers]"
 								data={['All', 'Live20', 'Live21']}
@@ -87,7 +87,7 @@ const AddForm = connect(({ add }) => add)(
 							<Label text="Group" />
 							<br />
 							<Select
-								stateKey="group"
+								field="group"
 								multiple={true}
 								title="[Groups]"
 								data={['All', 'usd-11', 'usd-risk']}

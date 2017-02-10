@@ -5,12 +5,12 @@ import {
 } from '../constants/ActionTypes';
 
 const Input = connect()(
-	({ dispatch, stateKey }) => (
+	({ dispatch, field }) => (
 		<input type="text" onChange={e =>
 			dispatch({
 				type: INPUT_CHANGE,
 				payload: {
-					key: stateKey,
+					key: field,
 					value: e.target.value
 				}
 			})

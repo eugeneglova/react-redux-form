@@ -6,12 +6,12 @@ import {
 
 
 const Select = connect()(
-	({ dispatch, stateKey, multiple, title, data }) => (
+	({ dispatch, field, multiple, title, data }) => (
 		<select multiple={multiple} onChange={e =>
 			dispatch({
 				type: SELECT_CHANGE,
 				payload: {
-					key: stateKey,
+					key: field,
 					value: e.target.value
 				}
 			})
