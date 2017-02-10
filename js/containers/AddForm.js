@@ -37,6 +37,7 @@ const AddForm = connect(({ add }) => add)(
 							<Label text="Type" required={true} />
 							<br />
 							<Select
+								stateKey="type"
 								multiple={true}
 								title="Please select [Type]"
 								data={['All', 'Deposits', 'Withdrawals']}
@@ -46,6 +47,7 @@ const AddForm = connect(({ add }) => add)(
 							<Label text="Day" required={true} />
 							<br />
 							<Select
+								stateKey="day"
 								multiple={true}
 								title="Please select [Day]"
 								data={['All', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']}
@@ -65,6 +67,7 @@ const AddForm = connect(({ add }) => add)(
 							<Label text="Trading Platform" />
 							<br />
 							<Select
+								server="platform"
 								multiple={true}
 								title="[Platforms]"
 								data={['All', 'MT4', 'MT5', 'Tradologic']}
@@ -74,6 +77,7 @@ const AddForm = connect(({ add }) => add)(
 							<Label text="Platform Server" />
 							<br />
 							<Select
+								stateKey="server"
 								multiple={true}
 								title="[Servers]"
 								data={['All', 'Live20', 'Live21']}
@@ -83,6 +87,7 @@ const AddForm = connect(({ add }) => add)(
 							<Label text="Group" />
 							<br />
 							<Select
+								stateKey="group"
 								multiple={true}
 								title="[Groups]"
 								data={['All', 'usd-11', 'usd-risk']}

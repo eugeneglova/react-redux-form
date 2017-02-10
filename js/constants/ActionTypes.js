@@ -4,6 +4,7 @@ export const FETCH_FULFILLED = 'FETCH_FULFILLED';
 export const FETCH_REJECTED = 'FETCH_REJECTED';
 
 export const INPUT_CHANGE = 'INPUT_CHANGE';
+export const SELECT_CHANGE = 'SELECT_CHANGE';
 
 export const ADD_ITEM = 'ADD_ITEM';
 export const ADD_ITEM_PENDING = 'ADD_ITEM_PENDING';
