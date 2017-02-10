@@ -2,7 +2,7 @@ import React from 'react';
 
 const Select = ({ multiple, title, data }) => (
 	<select multiple={multiple}>
-		<option>{title}</option>
+		{title ? <option>{title}</option> : ''}
 		{data.map((val, key) => (
 			<option key={key}>
 				{val}
