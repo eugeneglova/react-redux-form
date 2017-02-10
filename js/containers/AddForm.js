@@ -54,12 +54,12 @@ const AddForm = connect(({ add }) => add)(
 						<td>
 							<Label text="Min Amount" />
 							<br />
-							<Input />
+							<Input stateKey="minAmount" />
 						</td>
 						<td>
 							<Label text="Max Amount" />
 							<br />
-							<Input />
+							<Input stateKey="maxAmount" />
 						</td>
 						<td>
 							<Label text="Trading Platform" />
