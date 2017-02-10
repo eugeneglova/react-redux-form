@@ -1,19 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {
-	INPUT_CHANGE
-} from '../constants/ActionTypes';
+import { changeItem } from '../actions';
 
 const Input = connect()(
-	({ dispatch, field }) => (
+	({ dispatch, index, field }) => (
 		<input type="text" onChange={e =>
-			dispatch({
-				type: INPUT_CHANGE,
-				payload: {
-					key: field,
-					value: e.target.value
-				}
-			})
+			dispatch(changeItem({
+				index,
+				key: field,
+				value: e.target.value
+			}))
 		} />
 	)
 );

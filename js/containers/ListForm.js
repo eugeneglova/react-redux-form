@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import Input from '../components/Input';
 import Select from '../components/Select';
 import Button from '../components/Button';
+import { changeItem, saveItem } from '../actions';
 
 const ListForm = connect(state => state)(
-	({ dataFromAPI }) => {
+	({ dispatch, dataFromAPI }) => {
 		if (dataFromAPI.loading) {
 			return (<div>Loading...</div>);
 		}
@@ -94,7 +95,7 @@ const ListForm = connect(state => state)(
 								Delete
 							</td>
 						</tr>
-						{dataFromAPI.response.data.map((item) => (
+						{dataFromAPI.response.data.map((item, index) => (
 							<tr key={item.id}>
 								<td>
 									<input type="checkbox" />
@@ -104,47 +105,53 @@ const ListForm = connect(state => state)(
 								</td>
 								<td>
 									<Select
+										index={index}
+										field="type"
 										data={['All', 'Deposits', 'Withdrawals']}
 									/>
 								</td>
 								<td>
 									<Select
+										index={index}
+										field="day"
 										data={['All', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']}
 									/>
 								</td>
 								<td>
-									<input type="text" defaultValue={item.amount} />
+									<Input index={index} field="minAmount" value={item.amount} />
 								</td>
 								<td>
-									<input type="text" defaultValue={item.amount} />
+									<Input index={index} field="maxAmount" value={item.amount} />
 								</td>
 								<td>
 									<Select
+										index={index}
+										field="platform"
 										data={['All', 'MT4', 'MT5', 'Tradologic']}
 									/>
 								</td>
 								<td>
 									<Select
+										index={index}
+										field="server"
 										data={['All', 'Live20', 'Live21']}
 									/>
 								</td>
 								<td>
 									<Select
+										index={index}
+										field="group"
 										data={['All', 'usd-11', 'usd-risk']}
 									/>
 								</td>
 								<td>
-									<Select
-										data={['All', 'admin', 'user']}
-									/>
+									admin
 								</td>
 								<td>
-									<Select
-										data={['All']}
-									/>
+									{item.updated_at}
 								</td>
 								<td>
-									<Button text="Save" />
+									<Button text="Save" onClick={() => dispatch(saveItem(item))} />
 								</td>
 								<td>
 									<Button text="Delete" />
