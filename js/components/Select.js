@@ -4,6 +4,7 @@ import {
 	SELECT_CHANGE
 } from '../constants/ActionTypes';
 
+const getSelectedValues = (select) => [].slice.call(select.options).filter((o) => o.selected).map((o) => o.value);
 
 const Select = connect()(
 	({ dispatch, field, multiple, title, data }) => (
@@ -12,7 +13,7 @@ const Select = connect()(
 				type: SELECT_CHANGE,
 				payload: {
 					key: field,
-					value: e.target.value
+					value: getSelectedValues(e.target)
 				}
 			})
 		}>
