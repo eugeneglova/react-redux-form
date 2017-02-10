@@ -67,7 +67,7 @@ const AddForm = connect(({ add }) => add)(
 							<Label text="Trading Platform" />
 							<br />
 							<Select
-								server="platform"
+								field="platform"
 								multiple={true}
 								title="[Platforms]"
 								data={['All', 'MT4', 'MT5', 'Tradologic']}
