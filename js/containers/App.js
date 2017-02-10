@@ -10,7 +10,7 @@ const App = connect()(
 				[Display System Message]
 			</div>
 			<AddForm />
-			<ListForm />
+			<ListForm data={[1,2,3,4]} />
 		</div>
 	)
 );
