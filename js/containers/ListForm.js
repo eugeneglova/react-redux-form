@@ -142,6 +142,20 @@ const ListForm = connect()(
 					))}
 				</tbody>
 			</table>
+			<div>
+				<Button text="Delete All"/ >
+				<Button text="Save All" />
+				<div>
+					Prev
+					1
+					...
+					2
+					15
+					Next
+				</div>
+				Show Per:
+				<Select data={[100, 200, 300]} />
+			</div>
 		</div>
 	)
 );
