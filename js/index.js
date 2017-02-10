@@ -12,6 +12,9 @@ const initialState = {
 	dataFromAPI: {
 		loading: false,
 		response: {}
+	},
+	add: {
+		data: {}
 	}
 };
 

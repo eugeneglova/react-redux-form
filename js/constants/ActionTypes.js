@@ -2,3 +2,10 @@ export const FETCH = 'FETCH';
 export const FETCH_PENDING = 'FETCH_PENDING';
 export const FETCH_FULFILLED = 'FETCH_FULFILLED';
 export const FETCH_REJECTED = 'FETCH_REJECTED';
+
+export const INPUT_CHANGE = 'INPUT_CHANGE';
+
+export const ADD_ITEM = 'ADD_ITEM';
+export const ADD_ITEM_PENDING = 'ADD_ITEM_PENDING';
+export const ADD_ITEM_FULFILLED = 'ADD_ITEM_FULFILLED';
+export const ADD_ITEM_REJECTED = 'ADD_ITEM_REJECTED';

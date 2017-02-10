@@ -4,9 +4,10 @@ import Label from '../components/Label';
 import Input from '../components/Input';
 import Select from '../components/Select';
 import Button from '../components/Button';
+import { addItem } from '../actions';
 
-const AddForm = connect()(
-	() => (
+const AddForm = connect(({ add }) => add)(
+	({ dispatch, data }) => (
 		<div>
 			<table>
 				<tbody>
@@ -14,17 +15,17 @@ const AddForm = connect()(
 						<td>
 							<Label text="Title" required={true} />
 							<br />
-							<Input />
+							<Input stateKey="title" />
 						</td>
 						<td>
 							<Label text="From" required={true} />
 							<br />
-							<Input /> : <Input />
+							<Input stateKey="fromHH" /> : <Input stateKey="fromMM" />
 						</td>
 						<td>
 							<Label text="To" required={true} />
 							<br />
-							<Input /> : <Input />
+							<Input stateKey="toHH" /> : <Input stateKey="toMM" />
 						</td>
 						<td>
 							<label>
@@ -92,7 +93,7 @@ const AddForm = connect()(
 			</table>
 			<div>
 				<Button text="Cancel" />
-				<Button text="Add" />
+				<Button text="Add" onClick={() => dispatch(addItem(data))} />
 			</div>
 		</div>
 	)
