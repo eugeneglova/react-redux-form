@@ -19,7 +19,7 @@ const ListForm = connect(state => state)(
 								<input type="checkbox" />
 							</td>
 							<td>
-								<input type="text" value="Title" />
+								<input type="text" defaultValue="Title" />
 								<Button text="Down" />
 								<Button text="Close" />
 							</td>
@@ -40,12 +40,12 @@ const ListForm = connect(state => state)(
 								<Button text="Close" />
 							</td>
 							<td>
-								<input type="text" value="Min Amount" />
+								<input type="text" defaultValue="Min Amount" />
 								<Button text="Down" />
 								<Button text="Close" />
 							</td>
 							<td>
-								<input type="text" value="Max Amount" />
+								<input type="text" defaultValue="Max Amount" />
 								<Button text="Down" />
 								<Button text="Close" />
 							</td>
@@ -113,10 +113,10 @@ const ListForm = connect(state => state)(
 									/>
 								</td>
 								<td>
-									<input type="text" value="Min Amount" value={item.amount} />
+									<input type="text" defaultValue={item.amount} />
 								</td>
 								<td>
-									<input type="text" value="Max Amount" value={item.amount} />
+									<input type="text" defaultValue={item.amount} />
 								</td>
 								<td>
 									<Select
