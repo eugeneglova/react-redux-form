@@ -1,14 +1,14 @@
 import React from 'react';
 
-const SelectMultiple = ({ title, data }) => (
-	<select multiple="true">
+const Select = ({ multiple, title, data }) => (
+	<select multiple={multiple}>
 		<option>{title}</option>
 		{data.map((val, key) => (
 			<option key={key}>
-				{val.color}
+				{val}
 			</option>
 		))}
 	</select>
 );
 
-export default SelectMultiple;
+export default Select;

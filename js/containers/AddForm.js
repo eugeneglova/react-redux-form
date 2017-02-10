@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Label from '../components/Label';
 import Input from '../components/Input';
-import SelectMultiple from '../components/SelectMultiple';
+import Select from '../components/Select';
 import Button from '../components/Button';
 
 const AddForm = connect()(
@@ -35,7 +35,8 @@ const AddForm = connect()(
 						<td>
 							<Label text="Type" required={true} />
 							<br />
-							<SelectMultiple
+							<Select
+								multiple={true}
 								title="Please select [Type]"
 								data={['All', 'Deposits', 'Withdrawals']}
 							/>
@@ -43,7 +44,8 @@ const AddForm = connect()(
 						<td>
 							<Label text="Day" required={true} />
 							<br />
-							<SelectMultiple
+							<Select
+								multiple={true}
 								title="Please select [Day]"
 								data={['All', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']}
 							/>
@@ -61,7 +63,8 @@ const AddForm = connect()(
 						<td>
 							<Label text="Trading Platform" />
 							<br />
-							<SelectMultiple
+							<Select
+								multiple={true}
 								title="[Platforms]"
 								data={['All', 'MT4', 'MT5', 'Tradologic']}
 							/>
@@ -69,7 +72,8 @@ const AddForm = connect()(
 						<td>
 							<Label text="Platform Server" />
 							<br />
-							<SelectMultiple
+							<Select
+								multiple={true}
 								title="[Servers]"
 								data={['All', 'Live20', 'Live21']}
 							/>
@@ -77,7 +81,8 @@ const AddForm = connect()(
 						<td>
 							<Label text="Group" />
 							<br />
-							<SelectMultiple
+							<Select
+								multiple={true}
 								title="[Groups]"
 								data={['All', 'usd-11', 'usd-risk']}
 							/>
