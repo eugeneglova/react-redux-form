@@ -4,160 +4,166 @@ import Input from '../components/Input';
 import Select from '../components/Select';
 import Button from '../components/Button';
 
-const ListForm = connect()(
-	({ data }) => (
-		<div>
-			<table>
-				<tbody>
-					<tr>
-						<td>
-							<input type="checkbox" />
-						</td>
-						<td>
-							<input type="text" value="Title" />
-							<Button text="Down" />
-							<Button text="Close" />
-						</td>
-						<td>
-							<Select
-								title="[Type]"
-								data={['All', 'Deposits', 'Withdrawals']}
-							/>
-							<Button text="Down" />
-							<Button text="Close" />
-						</td>
-						<td>
-							<Select
-								title="[Day]"
-								data={['All', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']}
-							/>
-							<Button text="Down" />
-							<Button text="Close" />
-						</td>
-						<td>
-							<input type="text" value="Min Amount" />
-							<Button text="Down" />
-							<Button text="Close" />
-						</td>
-						<td>
-							<input type="text" value="Max Amount" />
-							<Button text="Down" />
-							<Button text="Close" />
-						</td>
-						<td>
-							<Select
-								title="[Platforms]"
-								data={['All', 'MT4', 'MT5', 'Tradologic']}
-							/>
-							<Button text="Down" />
-							<Button text="Close" />
-						</td>
-						<td>
-							<Select
-								title="[Servers]"
-								data={['All', 'Live20', 'Live21']}
-							/>
-							<Button text="Down" />
-							<Button text="Close" />
-						</td>
-						<td>
-							<Select
-								title="[Groups]"
-								data={['All', 'usd-11', 'usd-risk']}
-							/>
-							<Button text="Down" />
-							<Button text="Close" />
-						</td>
-						<td>
-							<Select
-								title="[Modified By]"
-								data={['All', 'admin', 'user']}
-							/>
-							<Button text="Down" />
-							<Button text="Close" />
-						</td>
-						<td>
-							<Select
-								title="Modified Date"
-								data={['All']}
-							/>
-						</td>
-						<td>
-							Save
-						</td>
-					</tr>
-					{data.map((item, key) => (
-						<tr key={key}>
+const ListForm = connect(state => state)(
+	({ dataFromAPI }) => {
+		if (dataFromAPI.loading) {
+			return (<div>Loading...</div>);
+		}
+
+		return (
+			<div>
+				<table>
+					<tbody>
+						<tr>
 							<td>
 								<input type="checkbox" />
 							</td>
 							<td>
-								title
+								<input type="text" value="Title" />
+								<Button text="Down" />
+								<Button text="Close" />
 							</td>
 							<td>
 								<Select
+									title="[Type]"
 									data={['All', 'Deposits', 'Withdrawals']}
 								/>
+								<Button text="Down" />
+								<Button text="Close" />
 							</td>
 							<td>
 								<Select
+									title="[Day]"
 									data={['All', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']}
 								/>
+								<Button text="Down" />
+								<Button text="Close" />
 							</td>
 							<td>
 								<input type="text" value="Min Amount" />
+								<Button text="Down" />
+								<Button text="Close" />
 							</td>
 							<td>
 								<input type="text" value="Max Amount" />
+								<Button text="Down" />
+								<Button text="Close" />
 							</td>
 							<td>
 								<Select
+									title="[Platforms]"
 									data={['All', 'MT4', 'MT5', 'Tradologic']}
 								/>
+								<Button text="Down" />
+								<Button text="Close" />
 							</td>
 							<td>
 								<Select
+									title="[Servers]"
 									data={['All', 'Live20', 'Live21']}
 								/>
+								<Button text="Down" />
+								<Button text="Close" />
 							</td>
 							<td>
 								<Select
+									title="[Groups]"
 									data={['All', 'usd-11', 'usd-risk']}
 								/>
+								<Button text="Down" />
+								<Button text="Close" />
 							</td>
 							<td>
 								<Select
+									title="[Modified By]"
 									data={['All', 'admin', 'user']}
 								/>
+								<Button text="Down" />
+								<Button text="Close" />
 							</td>
 							<td>
 								<Select
+									title="Modified Date"
 									data={['All']}
 								/>
 							</td>
 							<td>
-								<Button text="Save" />
+								Save
 							</td>
 						</tr>
-					))}
-				</tbody>
-			</table>
-			<div>
-				<Button text="Delete All"/ >
-				<Button text="Save All" />
+						{dataFromAPI.response.data.map((item, key) => (
+							<tr key={key}>
+								<td>
+									<input type="checkbox" />
+								</td>
+								<td>
+									title
+								</td>
+								<td>
+									<Select
+										data={['All', 'Deposits', 'Withdrawals']}
+									/>
+								</td>
+								<td>
+									<Select
+										data={['All', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']}
+									/>
+								</td>
+								<td>
+									<input type="text" value="Min Amount" />
+								</td>
+								<td>
+									<input type="text" value="Max Amount" />
+								</td>
+								<td>
+									<Select
+										data={['All', 'MT4', 'MT5', 'Tradologic']}
+									/>
+								</td>
+								<td>
+									<Select
+										data={['All', 'Live20', 'Live21']}
+									/>
+								</td>
+								<td>
+									<Select
+										data={['All', 'usd-11', 'usd-risk']}
+									/>
+								</td>
+								<td>
+									<Select
+										data={['All', 'admin', 'user']}
+									/>
+								</td>
+								<td>
+									<Select
+										data={['All']}
+									/>
+								</td>
+								<td>
+									<Button text="Save" />
+								</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
 				<div>
-					Prev
-					1
-					...
-					2
-					15
-					Next
+					<Button text="Delete All"/ >
+					<Button text="Save All" />
+					<div>
+						Prev
+						1
+						...
+						2
+						15
+						Next
+					</div>
+					Show Per:
+					<Select data={[100, 200, 300]} />
 				</div>
-				Show Per:
-				<Select data={[100, 200, 300]} />
 			</div>
-		</div>
-	)
+		);
+	}
 );
 
 export default ListForm;
