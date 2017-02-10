@@ -90,14 +90,17 @@ const ListForm = connect(state => state)(
 							<td>
 								Save
 							</td>
+							<td>
+								Delete
+							</td>
 						</tr>
-						{dataFromAPI.response.data.map((item, key) => (
-							<tr key={key}>
+						{dataFromAPI.response.data.map((item) => (
+							<tr key={item.id}>
 								<td>
 									<input type="checkbox" />
 								</td>
 								<td>
-									title
+									{item.comment}
 								</td>
 								<td>
 									<Select
@@ -110,10 +113,10 @@ const ListForm = connect(state => state)(
 									/>
 								</td>
 								<td>
-									<input type="text" value="Min Amount" />
+									<input type="text" value="Min Amount" value={item.amount} />
 								</td>
 								<td>
-									<input type="text" value="Max Amount" />
+									<input type="text" value="Max Amount" value={item.amount} />
 								</td>
 								<td>
 									<Select
@@ -142,6 +145,9 @@ const ListForm = connect(state => state)(
 								</td>
 								<td>
 									<Button text="Save" />
+								</td>
+								<td>
+									<Button text="Delete" />
 								</td>
 							</tr>
 						))}
