@@ -117,6 +117,6 @@ const changeFilterAction = payload => ({
 
 export const changeFilter = payload => (dispatch, getState) => {
 	dispatch(changeFilterAction(payload)).then(() => {
-		fetchAction(getState().dataFromAPI.filter);
+		dispatch(fetchAction(getState().dataFromAPI.filter));
 	});
 };

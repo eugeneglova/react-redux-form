@@ -4,7 +4,7 @@ const Input = (
 	({ value, placeholder, onChange }) => (
 		<input
 			type="text"
-			defaultValue={value}
+			value={value}
 			placeholder={placeholder}
 			onChange={e => onChange(e.target.value)}
 		/>
