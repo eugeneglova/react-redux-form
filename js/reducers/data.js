@@ -9,8 +9,9 @@ import {
 const reducer = (state = {}, action) => {
 	if (action.type === CHANGE_ITEM) {
 		if (action.payload.index == null) return state;
-		let data = {};
-		data[action.payload.key] = action.payload.value;
+		let data = {
+			[action.payload.key]: action.payload.value
+		};
 		let rd = state.response.data.slice();
 		rd[action.payload.index] = {...state.response.data[action.payload.index], ...data};
 		return {...state,
@@ -19,8 +20,9 @@ const reducer = (state = {}, action) => {
 			}
 		};
 	} else if (action.type === CHANGE_FILTER_FULFILLED) {
-		let filter = {};
-		filter[action.payload.key] = action.payload.value;
+		let filter = {
+			[action.payload.key]: action.payload.value
+		};
 		return {...state,
 			filter: {...state.filter,
 				...filter

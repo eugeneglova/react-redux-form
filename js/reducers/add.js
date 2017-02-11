@@ -8,8 +8,9 @@ import {
 const reducer = (state = {}, action) => {
 	if (action.type === CHANGE_ITEM) {
 		if (action.payload.index) return state;
-		let data = {};
-		data[action.payload.key] = action.payload.value;
+		let data = {
+			[action.payload.key]: action.payload.value
+		};
 		return {...state,
 			data: {...state.data, ...data}
 		};
