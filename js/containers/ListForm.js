@@ -4,11 +4,11 @@ import Input from '../components/Input';
 import Select from '../components/Select';
 import Button from '../components/Button';
 import Pagination from '../components/Pagination';
-import { fetch, saveItem } from '../actions';
+import { fetch, changeItem, saveItem } from '../actions';
 
-const ListForm = connect(state => state)(
-	({ dispatch, dataFromAPI }) => {
-		if (dataFromAPI.loading) {
+const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
+	({ dispatch, loading, response, filter }) => {
+		if (loading) {
 			return (<div>Loading...</div>);
 		}
 
@@ -21,7 +21,9 @@ const ListForm = connect(state => state)(
 								<input type="checkbox" />
 							</td>
 							<td>
-								<input type="text" defaultValue="Title" />
+								<Input
+									value="Title"
+								/>
 								<Button text="Down" />
 								<Button text="Close" />
 							</td>
@@ -96,7 +98,7 @@ const ListForm = connect(state => state)(
 								Delete
 							</td>
 						</tr>
-						{dataFromAPI.response.data.map((item, index) => (
+						{response.data.map((item, index) => (
 							<tr key={item.id}>
 								<td>
 									<input type="checkbox" />
@@ -106,43 +108,70 @@ const ListForm = connect(state => state)(
 								</td>
 								<td>
 									<Select
-										index={index}
-										field="type"
 										data={['All', 'Deposits', 'Withdrawals']}
+										onChange={(value) => dispatch(changeItem({
+											key: 'type',
+											value,
+											index
+										}))}
 									/>
 								</td>
 								<td>
 									<Select
-										index={index}
-										field="day"
 										data={['All', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']}
+										onChange={(value) => dispatch(changeItem({
+											key: 'day',
+											value,
+											index
+										}))}
 									/>
 								</td>
 								<td>
-									<Input index={index} field="minAmount" value={item.amount} />
+									<Input value={item.amount}
+										onChange={(value) => dispatch(changeItem({
+											key: 'minAmount',
+											value,
+											index
+										}))}
+									/>
 								</td>
 								<td>
-									<Input index={index} field="maxAmount" value={item.amount} />
+									<Input value={item.amount}
+										onChange={(value) => dispatch(changeItem({
+											key: 'maxAmount',
+											value,
+											index
+										}))}
+									/>
 								</td>
 								<td>
 									<Select
-										index={index}
-										field="platform"
 										data={['All', 'MT4', 'MT5', 'Tradologic']}
+										onChange={(value) => dispatch(changeItem({
+											key: 'platform',
+											value,
+											index
+										}))}
 									/>
 								</td>
 								<td>
 									<Select
-										index={index}
-										field="server"
 										data={['All', 'Live20', 'Live21']}
+										onChange={(value) => dispatch(changeItem({
+											key: 'server',
+											value,
+											index
+										}))}
 									/>
 								</td>
 								<td>
 									<Select
-										index={index}
-										field="group"
 										data={['All', 'usd-11', 'usd-risk']}
+										onChange={(value) => dispatch(changeItem({
+											key: 'group',
+											value,
+											index
+										}))}
 									/>
 								</td>
 								<td>
@@ -165,9 +194,9 @@ const ListForm = connect(state => state)(
 					<Button text="Delete All"/ >
 					<Button text="Save All" />
 					<Pagination
-						totalPages={dataFromAPI.response.pagination.total_pages}
-						currentPage={dataFromAPI.response.pagination.current_page}
-						onClick={(page) => dispatch(fetch({ page }))}
+						totalPages={response.pagination.total_pages}
+						currentPage={response.pagination.current_page}
+						onClick={(page) => dispatch(fetch({ ...filter, page }))}
 					/>
 					Show Per:
 					<Select data={[100, 200, 300]} />
