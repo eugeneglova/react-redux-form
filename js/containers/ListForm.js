@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Input from '../components/Input';
 import Select from '../components/Select';
 import Button from '../components/Button';
+import Pagination from '../components/Pagination';
 import { changeItem, saveItem } from '../actions';
 
 const ListForm = connect(state => state)(
@@ -163,14 +164,10 @@ const ListForm = connect(state => state)(
 				<div>
 					<Button text="Delete All"/ >
 					<Button text="Save All" />
-					<div>
-						Prev
-						1
-						...
-						2
-						15
-						Next
-					</div>
+					<Pagination
+						totalPages={dataFromAPI.response.pagination.total_pages}
+						currentPage={dataFromAPI.response.pagination.current_page}
+					/>
 					Show Per:
 					<Select data={[100, 200, 300]} />
 				</div>
