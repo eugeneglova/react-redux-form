@@ -18,7 +18,8 @@ const fetchAction = ({
 		server = [],
 		group = [],
 		modifiedBy = [],
-		modifiedDate = []
+		modifiedDate = [],
+		perPage = 100
 	}) => {
 	let filter = [];
 
@@ -64,6 +65,10 @@ const fetchAction = ({
 
 	if (modifiedDate.length) {
 		filter.push(`modifiedDate=${modifiedDate.join(',')}`);
+	}
+
+	if (perPage !== 100) {
+		filter.push(`perPage=${perPage}`);
 	}
 
 	return {

@@ -240,10 +240,19 @@ const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
 					<Pagination
 						totalPages={response.pagination.total_pages}
 						currentPage={response.pagination.current_page}
-						onClick={(page) => dispatch(fetch({ ...filter, page }))}
+						onClick={(page) => dispatch(changeFilter({
+							key: 'page',
+							value: page
+						}))}
 					/>
 					Show Per:
-					<Select data={[100, 200, 300]} />
+					<Select
+						data={[100, 200, 300]}
+						onChange={(value) => dispatch(changeFilter({
+							key: 'perPage',
+							value: parseInt(value, 10)
+						}))}
+					/>
 				</div>
 			</div>
 		);
