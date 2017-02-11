@@ -4,7 +4,8 @@ import {
 	CHANGE_LIST_ITEM,
 	CHANGE_FILTER,
 	ADD_ITEM,
-	SAVE_ITEM
+	SAVE_ITEM,
+	DELETE_ITEM
 } from '../constants/ActionTypes';
 import axios from 'axios';
 
@@ -118,6 +119,15 @@ const saveItemAction = data => ({
 
 export const saveItem = data => dispatch => {
 	dispatch(saveItemAction(data));
+};
+
+const deleteItemAction = data => ({
+	type: DELETE_ITEM,
+	payload: axios.delete(`/api/${data.id}`)
+});
+
+export const deleteItem = data => dispatch => {
+	dispatch(deleteItemAction(data));
 };
 
 const changeFilterAction = payload => ({

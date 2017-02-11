@@ -4,7 +4,7 @@ import Input from '../components/Input';
 import Select from '../components/Select';
 import Button from '../components/Button';
 import Pagination from '../components/Pagination';
-import { changeFilter, changeListItem, saveItem } from '../actions';
+import { changeFilter, changeListItem, saveItem, deleteItem } from '../actions';
 
 const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
 	({ dispatch, loading, response, filter }) => {
@@ -291,7 +291,7 @@ const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
 					<Button text="Save" onClick={() => dispatch(saveItem(item))} />
 				</td>
 				<td>
-					<Button text="Delete" />
+					<Button text="Delete" onClick={() => dispatch(deleteItem(item))} />
 				</td>
 			</tr>
 		));
