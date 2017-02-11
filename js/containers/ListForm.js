@@ -29,7 +29,12 @@ const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
 									}))}
 								/>
 								<Button text="Down" />
-								<Button text="Close" />
+								<Button text="X"
+									onClick={() => dispatch(changeFilter({
+										key: 'title',
+										value: ''
+									}))}
+								/>
 							</td>
 							<td>
 								<Select
@@ -41,7 +46,12 @@ const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
 									}))}
 								/>
 								<Button text="Down" />
-								<Button text="Close" />
+								<Button text="X"
+									onClick={() => dispatch(changeFilter({
+										key: 'type',
+										value: []
+									}))}
+								/>
 							</td>
 							<td>
 								<Select
@@ -53,7 +63,12 @@ const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
 									}))}
 								/>
 								<Button text="Down" />
-								<Button text="Close" />
+								<Button text="X"
+									onClick={() => dispatch(changeFilter({
+										key: 'day',
+										value: []
+									}))}
+								/>
 							</td>
 							<td>
 								<Input
@@ -64,7 +79,12 @@ const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
 									}))}
 								/>
 								<Button text="Down" />
-								<Button text="Close" />
+								<Button text="X"
+									onClick={() => dispatch(changeFilter({
+										key: 'minAmount',
+										value: ''
+									}))}
+								/>
 							</td>
 							<td>
 								<Input
@@ -75,7 +95,12 @@ const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
 									}))}
 								/>
 								<Button text="Down" />
-								<Button text="Close" />
+								<Button text="X"
+									onClick={() => dispatch(changeFilter({
+										key: 'maxAmount',
+										value: ''
+									}))}
+								/>
 							</td>
 							<td>
 								<Select
@@ -87,7 +112,12 @@ const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
 									}))}
 								/>
 								<Button text="Down" />
-								<Button text="Close" />
+								<Button text="X"
+									onClick={() => dispatch(changeFilter({
+										key: 'platform',
+										value: []
+									}))}
+								/>
 							</td>
 							<td>
 								<Select
@@ -99,7 +129,12 @@ const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
 									}))}
 								/>
 								<Button text="Down" />
-								<Button text="Close" />
+								<Button text="X"
+									onClick={() => dispatch(changeFilter({
+										key: 'server',
+										value: []
+									}))}
+								/>
 							</td>
 							<td>
 								<Select
@@ -111,7 +146,12 @@ const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
 									}))}
 								/>
 								<Button text="Down" />
-								<Button text="Close" />
+								<Button text="X"
+									onClick={() => dispatch(changeFilter({
+										key: 'group',
+										value: []
+									}))}
+								/>
 							</td>
 							<td>
 								<Select
@@ -123,7 +163,12 @@ const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
 									}))}
 								/>
 								<Button text="Down" />
-								<Button text="Close" />
+								<Button text="X"
+									onClick={() => dispatch(changeFilter({
+										key: 'modifiedBy',
+										value: []
+									}))}
+								/>
 							</td>
 							<td>
 								<Select
