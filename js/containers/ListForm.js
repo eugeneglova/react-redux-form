@@ -4,10 +4,10 @@ import Input from '../components/Input';
 import Select from '../components/Select';
 import Button from '../components/Button';
 import Pagination from '../components/Pagination';
-import { fetch, changeFilter, changeItem, saveItem } from '../actions';
+import { changeFilter, changeItem, saveItem } from '../actions';
 
 const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
-	({ dispatch, loading, response, filter }) => {
+	({ dispatch, loading, response }) => {
 		if (loading) {
 			return (<div>Loading...</div>);
 		}
