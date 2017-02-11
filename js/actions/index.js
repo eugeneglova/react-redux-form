@@ -6,13 +6,13 @@ import {
 } from '../constants/ActionTypes';
 import axios from 'axios';
 
-const fetchByName = name => ({
+const fetchAction = (data = { page: 1 }) => ({
 	type: FETCH,
-	payload: axios.get('/api/' + name + '.json')
+	payload: axios.get(`/api/data.json?page=${data.page}`)
 });
 
-export const fetch = name => dispatch => {
-	dispatch(fetchByName(name));
+export const fetch = (data) => dispatch => {
+	dispatch(fetchAction(data));
 };
 
 const addItemData = data => ({
@@ -22,7 +22,7 @@ const addItemData = data => ({
 
 export const addItem = data => dispatch => {
 	dispatch(addItemData(data)).catch(() => {
-		dispatch(fetchByName('data'));
+		dispatch(fetchAction());
 	});
 };
 

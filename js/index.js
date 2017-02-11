@@ -22,7 +22,7 @@ const middleware = [thunk, promiseMiddleware()];
 
 const store = createStore(reducers, initialState, applyMiddleware(...middleware));
 
-store.dispatch(fetch('data'));
+store.dispatch(fetch());
 
 render(
 	<Provider store={store}>

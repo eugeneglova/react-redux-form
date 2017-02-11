@@ -4,7 +4,7 @@ import Input from '../components/Input';
 import Select from '../components/Select';
 import Button from '../components/Button';
 import Pagination from '../components/Pagination';
-import { changeItem, saveItem } from '../actions';
+import { fetch, saveItem } from '../actions';
 
 const ListForm = connect(state => state)(
 	({ dispatch, dataFromAPI }) => {
@@ -167,6 +167,7 @@ const ListForm = connect(state => state)(
 					<Pagination
 						totalPages={dataFromAPI.response.pagination.total_pages}
 						currentPage={dataFromAPI.response.pagination.current_page}
+						onClick={(page) => dispatch(fetch({ page }))}
 					/>
 					Show Per:
 					<Select data={[100, 200, 300]} />
