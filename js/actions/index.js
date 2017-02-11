@@ -6,12 +6,12 @@ import {
 } from '../constants/ActionTypes';
 import axios from 'axios';
 
-const fetchAction = (data = { page: 1 }) => ({
+const fetchAction = ({ page = 1 }) => ({
 	type: FETCH,
-	payload: axios.get(`/api/data.json?page=${data.page}`)
+	payload: axios.get(`/api/data.json?page=${page}`)
 });
 
-export const fetch = (data) => dispatch => {
+export const fetch = (data = {}) => dispatch => {
 	dispatch(fetchAction(data));
 };
 
