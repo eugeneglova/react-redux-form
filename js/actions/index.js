@@ -1,6 +1,7 @@
 import {
 	FETCH,
-	CHANGE_ITEM,
+	CHANGE_ADD_ITEM,
+	CHANGE_LIST_ITEM,
 	CHANGE_FILTER,
 	ADD_ITEM,
 	SAVE_ITEM
@@ -92,13 +93,22 @@ export const addItem = data => dispatch => {
 	});
 };
 
-const changeItemAction = payload => ({
-	type: CHANGE_ITEM,
+const changeAddItemAction = payload => ({
+	type: CHANGE_ADD_ITEM,
 	payload: payload
 });
 
-export const changeItem = payload => dispatch => {
-	dispatch(changeItemAction(payload));
+export const changeAddItem = payload => dispatch => {
+	dispatch(changeAddItemAction(payload));
+};
+
+const changeListItemAction = payload => ({
+	type: CHANGE_LIST_ITEM,
+	payload: payload
+});
+
+export const changeListItem = payload => dispatch => {
+	dispatch(changeListItemAction(payload));
 };
 
 const saveItemAction = data => ({

@@ -1,13 +1,12 @@
 import {
-	CHANGE_ITEM,
+	CHANGE_ADD_ITEM,
 	ADD_ITEM_PENDING,
 	ADD_ITEM_FULFILLED,
 	ADD_ITEM_REJECTED
 } from '../constants/ActionTypes';
 
 const reducer = (state = {}, action) => {
-	if (action.type === CHANGE_ITEM) {
-		if (action.payload.index) return state;
+	if (action.type === CHANGE_ADD_ITEM) {
 		let data = {
 			[action.payload.key]: action.payload.value
 		};

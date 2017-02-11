@@ -4,7 +4,7 @@ import Input from '../components/Input';
 import Select from '../components/Select';
 import Button from '../components/Button';
 import Pagination from '../components/Pagination';
-import { changeFilter, changeItem, saveItem } from '../actions';
+import { changeFilter, changeListItem, saveItem } from '../actions';
 
 const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
 	({ dispatch, loading, response, filter }) => {
@@ -211,7 +211,8 @@ const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
 				<td>
 					<Select
 						data={['All', 'Deposits', 'Withdrawals']}
-						onChange={(value) => dispatch(changeItem({
+						value={item.type}
+						onChange={(value) => dispatch(changeListItem({
 							key: 'type',
 							value,
 							index
@@ -221,7 +222,8 @@ const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
 				<td>
 					<Select
 						data={['All', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']}
-						onChange={(value) => dispatch(changeItem({
+						value={item.day}
+						onChange={(value) => dispatch(changeListItem({
 							key: 'day',
 							value,
 							index
@@ -229,8 +231,8 @@ const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
 					/>
 				</td>
 				<td>
-					<Input value={item.amount}
-						onChange={(value) => dispatch(changeItem({
+					<Input value={item.minAmount || item.amount}
+						onChange={(value) => dispatch(changeListItem({
 							key: 'minAmount',
 							value,
 							index
@@ -238,8 +240,8 @@ const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
 					/>
 				</td>
 				<td>
-					<Input value={item.amount}
-						onChange={(value) => dispatch(changeItem({
+					<Input value={item.maxAmount || item.amount}
+						onChange={(value) => dispatch(changeListItem({
 							key: 'maxAmount',
 							value,
 							index
@@ -249,7 +251,8 @@ const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
 				<td>
 					<Select
 						data={['All', 'MT4', 'MT5', 'Tradologic']}
-						onChange={(value) => dispatch(changeItem({
+						value={item.platform}
+						onChange={(value) => dispatch(changeListItem({
 							key: 'platform',
 							value,
 							index
@@ -259,7 +262,8 @@ const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
 				<td>
 					<Select
 						data={['All', 'Live20', 'Live21']}
-						onChange={(value) => dispatch(changeItem({
+						value={item.server}
+						onChange={(value) => dispatch(changeListItem({
 							key: 'server',
 							value,
 							index
@@ -269,7 +273,8 @@ const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
 				<td>
 					<Select
 						data={['All', 'usd-11', 'usd-risk']}
-						onChange={(value) => dispatch(changeItem({
+						value={item.group}
+						onChange={(value) => dispatch(changeListItem({
 							key: 'group',
 							value,
 							index

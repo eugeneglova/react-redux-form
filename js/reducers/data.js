@@ -2,13 +2,12 @@ import {
 	FETCH_PENDING,
 	FETCH_FULFILLED,
 	FETCH_REJECTED,
-	CHANGE_ITEM,
+	CHANGE_LIST_ITEM,
 	CHANGE_FILTER_FULFILLED
 } from '../constants/ActionTypes';
 
 const reducer = (state = {}, action) => {
-	if (action.type === CHANGE_ITEM) {
-		if (action.payload.index == null) return state;
+	if (action.type === CHANGE_LIST_ITEM) {
 		let data = {
 			[action.payload.key]: action.payload.value
 		};
