@@ -4,7 +4,7 @@ import Input from '../components/Input';
 import Select from '../components/Select';
 import Button from '../components/Button';
 import Pagination from '../components/Pagination';
-import { fetch, changeItem, saveItem } from '../actions';
+import { fetch, changeFilter, changeItem, saveItem } from '../actions';
 
 const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
 	({ dispatch, loading, response, filter }) => {
@@ -22,7 +22,11 @@ const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
 							</td>
 							<td>
 								<Input
-									value="Title"
+									placeholder="Title"
+									onChange={(value) => dispatch(changeFilter({
+										key: 'title',
+										value
+									}))}
 								/>
 								<Button text="Down" />
 								<Button text="Close" />
@@ -31,6 +35,10 @@ const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
 								<Select
 									title="[Type]"
 									data={['All', 'Deposits', 'Withdrawals']}
+									onChange={(value) => dispatch(changeFilter({
+										key: 'type',
+										value
+									}))}
 								/>
 								<Button text="Down" />
 								<Button text="Close" />
@@ -39,17 +47,33 @@ const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
 								<Select
 									title="[Day]"
 									data={['All', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']}
+									onChange={(value) => dispatch(changeFilter({
+										key: 'day',
+										value
+									}))}
 								/>
 								<Button text="Down" />
 								<Button text="Close" />
 							</td>
 							<td>
-								<input type="text" defaultValue="Min Amount" />
+								<Input
+									placeholder="Min Amount"
+									onChange={(value) => dispatch(changeFilter({
+										key: 'minAmount',
+										value
+									}))}
+								/>
 								<Button text="Down" />
 								<Button text="Close" />
 							</td>
 							<td>
-								<input type="text" defaultValue="Max Amount" />
+								<Input
+									placeholder="Max Amount"
+									onChange={(value) => dispatch(changeFilter({
+										key: 'maxAmount',
+										value
+									}))}
+								/>
 								<Button text="Down" />
 								<Button text="Close" />
 							</td>
@@ -57,6 +81,10 @@ const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
 								<Select
 									title="[Platforms]"
 									data={['All', 'MT4', 'MT5', 'Tradologic']}
+									onChange={(value) => dispatch(changeFilter({
+										key: 'platform',
+										value
+									}))}
 								/>
 								<Button text="Down" />
 								<Button text="Close" />
@@ -65,6 +93,10 @@ const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
 								<Select
 									title="[Servers]"
 									data={['All', 'Live20', 'Live21']}
+									onChange={(value) => dispatch(changeFilter({
+										key: 'server',
+										value
+									}))}
 								/>
 								<Button text="Down" />
 								<Button text="Close" />
@@ -73,6 +105,10 @@ const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
 								<Select
 									title="[Groups]"
 									data={['All', 'usd-11', 'usd-risk']}
+									onChange={(value) => dispatch(changeFilter({
+										key: 'group',
+										value
+									}))}
 								/>
 								<Button text="Down" />
 								<Button text="Close" />
@@ -81,6 +117,10 @@ const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
 								<Select
 									title="[Modified By]"
 									data={['All', 'admin', 'user']}
+									onChange={(value) => dispatch(changeFilter({
+										key: 'modifiedBy',
+										value
+									}))}
 								/>
 								<Button text="Down" />
 								<Button text="Close" />
@@ -89,6 +129,10 @@ const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
 								<Select
 									title="Modified Date"
 									data={['All']}
+									onChange={(value) => dispatch(changeFilter({
+										key: 'modifiedDate',
+										value
+									}))}
 								/>
 							</td>
 							<td>

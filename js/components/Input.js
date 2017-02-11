@@ -1,8 +1,13 @@
 import React from 'react';
 
 const Input = (
-	({ onChange }) => (
-		<input type="text" onChange={e => onChange(e.target.value)} />
+	({ value, placeholder, onChange }) => (
+		<input
+			type="text"
+			defaultValue={value}
+			placeholder={placeholder}
+			onChange={e => onChange(e.target.value)}
+		/>
 	)
 );
 

@@ -11,6 +11,7 @@ import { fetch } from './actions';
 const initialState = {
 	dataFromAPI: {
 		loading: false,
+		filter: {},
 		response: {}
 	},
 	add: {
