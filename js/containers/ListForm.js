@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Input from '../components/Input';
 import Select from '../components/Select';
-import Button from '../components/Button';
 import Pagination from '../components/Pagination';
 import { applyFilter, saveItem, deleteItem } from '../actions';
 import { Field, reduxForm } from 'redux-form';
@@ -203,10 +202,10 @@ const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
 					{item.updated_at}
 				</td>
 				<td>
-					<Button text="Save" onClick={() => dispatch(saveItem(item))} />
+					<button onClick={() => dispatch(saveItem(item))}>Save</button>
 				</td>
 				<td>
-					<Button text="Delete" onClick={() => dispatch(deleteItem(item))} />
+					<button onClick={() => dispatch(deleteItem(item))}>Delete</button>
 				</td>
 			</tr>
 		));
@@ -220,26 +219,21 @@ const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
 					</tbody>
 				</table>
 				<div>
-					<Button text="Delete All"/ >
-					<Button text="Save All" />
+					<button type="button">Delete All</button>
+					<button type="button">Save All</button>
 					{response.pagination ?
 					<Pagination
 						totalPages={response.pagination.total_pages}
 						currentPage={response.pagination.current_page}
-						onClick={(page) => dispatch(changeFilter({
-							key: 'page',
-							value: page
-						}))}
+						onClick={(page) => dispatch(applyFilter(change('page', page)))}
 					/>
 					: ''}
 					Show Per:
-					<Select
-						data={[100, 200, 300]}
-						onChange={(value) => dispatch(changeFilter({
-							key: 'perPage',
-							value: parseInt(value, 10)
-						}))}
-					/>
+					<Field name="perPage" component="select" onChange={() => dispatch(applyFilter())}>
+						{[100, 200, 300].map((option, index) =>
+							<option key={index}>{option}</option>
+						)}
+					</Field>
 				</div>
 			</form>
 		);
