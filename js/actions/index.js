@@ -1,6 +1,5 @@
 import {
 	FETCH,
-	CHANGE_ADD_ITEM,
 	CHANGE_LIST_ITEM,
 	CHANGE_FILTER,
 	ADD_ITEM,
@@ -83,24 +82,11 @@ export const fetch = (filter = {}) => dispatch => {
 	dispatch(fetchAction(filter));
 };
 
-const addItemData = data => ({
-	type: ADD_ITEM,
-	payload: axios.post('/api/', data)
-});
-
-export const addItem = data => dispatch => {
-	dispatch(addItemData(data)).catch(() => {
-		dispatch(fetchAction());
+export const addItem = () => (dispatch, getState) => {
+	dispatch({
+		type: ADD_ITEM,
+		payload: axios.post('/api/', getState().form.add.values)
 	});
-};
-
-const changeAddItemAction = payload => ({
-	type: CHANGE_ADD_ITEM,
-	payload: payload
-});
-
-export const changeAddItem = payload => dispatch => {
-	dispatch(changeAddItemAction(payload));
 };
 
 const changeListItemAction = payload => ({

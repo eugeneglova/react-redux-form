@@ -13,9 +13,6 @@ const initialState = {
 		loading: false,
 		filter: {},
 		response: {}
-	},
-	add: {
-		data: {}
 	}
 };
 
