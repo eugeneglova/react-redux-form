@@ -7,6 +7,7 @@ import { applyFilter, saveItem, deleteItem } from '../actions';
 import { Field, reduxForm } from 'redux-form';
 import Filter from './Filter';
 import ListItem from './ListItem';
+import PerPage from './PerPage';
 
 const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
 	({ dispatch, change, handleSubmit, loading, response }) => {
@@ -35,12 +36,7 @@ const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
 						onClick={(page) => dispatch(applyFilter(change('page', page)))}
 					/>
 					: ''}
-					Show Per:
-					<Field name="perPage" component="select" onChange={() => dispatch(applyFilter())}>
-						{[100, 200, 300].map((option, index) =>
-							<option key={index}>{option}</option>
-						)}
-					</Field>
+					<PerPage />
 				</div>
 			</div>
 		);
