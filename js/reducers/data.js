@@ -2,8 +2,7 @@ import {
 	FETCH_PENDING,
 	FETCH_FULFILLED,
 	FETCH_REJECTED,
-	CHANGE_LIST_ITEM,
-	CHANGE_FILTER_FULFILLED
+	CHANGE_LIST_ITEM
 } from '../constants/ActionTypes';
 
 const reducer = (state = {}, action) => {
@@ -16,15 +15,6 @@ const reducer = (state = {}, action) => {
 		return {...state,
 			response: {...state.response,
 				data: rd
-			}
-		};
-	} else if (action.type === CHANGE_FILTER_FULFILLED) {
-		let filter = {
-			[action.payload.key]: action.payload.value
-		};
-		return {...state,
-			filter: {...state.filter,
-				...filter
 			}
 		};
 	} else if (action.type === FETCH_PENDING) {

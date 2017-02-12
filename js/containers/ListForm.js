@@ -4,10 +4,12 @@ import Input from '../components/Input';
 import Select from '../components/Select';
 import Button from '../components/Button';
 import Pagination from '../components/Pagination';
-import { changeFilter, changeListItem, saveItem, deleteItem } from '../actions';
+import { applyFilter, saveItem, deleteItem } from '../actions';
+import { Field, reduxForm } from 'redux-form';
+
 
 const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
-	({ dispatch, loading, response, filter }) => {
+	({ dispatch, change, handleSubmit, loading, response }) => {
 		const loadingDiv = (
 			<tr>
 				<td colSpan="12">
@@ -22,174 +24,87 @@ const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
 					<input type="checkbox" />
 				</td>
 				<td>
-					<Input
-						placeholder="Title"
-						value={filter.title}
-						onChange={(value) => dispatch(changeFilter({
-							key: 'title',
-							value
-						}))}
-					/>
-					<Button text="Down" />
-					<Button text="X"
-						onClick={() => dispatch(changeFilter({
-							key: 'title',
-							value: ''
-						}))}
-					/>
+					<Field name="title" placeholder="Title" component="input" type="text" onChange={() => dispatch(applyFilter())} />
+					<button>Down</button>
+					<button type="button" onClick={() => dispatch(applyFilter(change('title', '')))}>X</button>
 				</td>
 				<td>
-					<Select
-						title="[Type]"
-						value={filter.type}
-						data={['All', 'Deposits', 'Withdrawals']}
-						onChange={(value) => dispatch(changeFilter({
-							key: 'type',
-							value
-						}))}
-					/>
-					<Button text="Down" />
-					<Button text="X"
-						onClick={() => dispatch(changeFilter({
-							key: 'type',
-							value: []
-						}))}
-					/>
+					<Field name="type" component="select" onChange={() => dispatch(applyFilter())}>
+						<option value="">[Type]</option>
+						{['All', 'Deposits', 'Withdrawals'].map((option, index) =>
+							<option key={index}>{option}</option>
+						)}
+					</Field>
+					<button>Down</button>
+					<button type="button" onClick={() => dispatch(applyFilter(change('type', '')))}>X</button>
 				</td>
 				<td>
-					<Select
-						title="[Day]"
-						value={filter.day}
-						data={['All', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']}
-						onChange={(value) => dispatch(changeFilter({
-							key: 'day',
-							value
-						}))}
-					/>
-					<Button text="Down" />
-					<Button text="X"
-						onClick={() => dispatch(changeFilter({
-							key: 'day',
-							value: []
-						}))}
-					/>
+					<Field name="day" component="select" onChange={() => dispatch(applyFilter())}>
+						<option value="">[Day]</option>
+						{['All', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'].map((option, index) =>
+							<option key={index}>{option}</option>
+						)}
+					</Field>
+					<button>Down</button>
+					<button type="button" onClick={() => dispatch(applyFilter(change('day', '')))}>X</button>
 				</td>
 				<td>
-					<Input
-						placeholder="Min Amount"
-						value={filter.minAmount}
-						onChange={(value) => dispatch(changeFilter({
-							key: 'minAmount',
-							value
-						}))}
-					/>
-					<Button text="Down" />
-					<Button text="X"
-						onClick={() => dispatch(changeFilter({
-							key: 'minAmount',
-							value: ''
-						}))}
-					/>
+					<Field name="minAmount" placeholder="Min Amount" component="input" type="text" onChange={() => dispatch(applyFilter())} />
+					<button>Down</button>
+					<button type="button" onClick={() => dispatch(applyFilter(change('minAmount', '')))}>X</button>
 				</td>
 				<td>
-					<Input
-						placeholder="Max Amount"
-						value={filter.maxAmount}
-						onChange={(value) => dispatch(changeFilter({
-							key: 'maxAmount',
-							value
-						}))}
-					/>
-					<Button text="Down" />
-					<Button text="X"
-						onClick={() => dispatch(changeFilter({
-							key: 'maxAmount',
-							value: ''
-						}))}
-					/>
+					<Field name="maxAmount" placeholder="Max Amount" component="input" type="text" onChange={() => dispatch(applyFilter())} />
+					<button>Down</button>
+					<button type="button" onClick={() => dispatch(applyFilter(change('maxAmount', '')))}>X</button>
 				</td>
 				<td>
-					<Select
-						title="[Platforms]"
-						value={filter.platform}
-						data={['All', 'MT4', 'MT5', 'Tradologic']}
-						onChange={(value) => dispatch(changeFilter({
-							key: 'platform',
-							value
-						}))}
-					/>
-					<Button text="Down" />
-					<Button text="X"
-						onClick={() => dispatch(changeFilter({
-							key: 'platform',
-							value: []
-						}))}
-					/>
+					<Field name="platform" component="select" onChange={() => dispatch(applyFilter())}>
+						<option value="">[Platforms]</option>
+						{['All', 'MT4', 'MT5', 'Tradologic'].map((option, index) =>
+							<option key={index}>{option}</option>
+						)}
+					</Field>
+					<button>Down</button>
+					<button type="button" onClick={() => dispatch(applyFilter(change('platform', '')))}>X</button>
 				</td>
 				<td>
-					<Select
-						title="[Servers]"
-						value={filter.server}
-						data={['All', 'Live20', 'Live21']}
-						onChange={(value) => dispatch(changeFilter({
-							key: 'server',
-							value
-						}))}
-					/>
-					<Button text="Down" />
-					<Button text="X"
-						onClick={() => dispatch(changeFilter({
-							key: 'server',
-							value: []
-						}))}
-					/>
+					<Field name="server" component="select" onChange={() => dispatch(applyFilter())}>
+						<option value="">[Servers]</option>
+						{['All', 'Live20', 'Live21'].map((option, index) =>
+							<option key={index}>{option}</option>
+						)}
+					</Field>
+					<button>Down</button>
+					<button type="button" onClick={() => dispatch(applyFilter(change('server', '')))}>X</button>
 				</td>
 				<td>
-					<Select
-						title="[Groups]"
-						value={filter.group}
-						data={['All', 'usd-11', 'usd-risk']}
-						onChange={(value) => dispatch(changeFilter({
-							key: 'group',
-							value
-						}))}
-					/>
-					<Button text="Down" />
-					<Button text="X"
-						onClick={() => dispatch(changeFilter({
-							key: 'group',
-							value: []
-						}))}
-					/>
+					<Field name="group" component="select" onChange={() => dispatch(applyFilter())}>
+						<option value="">[Groups]</option>
+						{['All', 'usd-11', 'usd-risk'].map((option, index) =>
+							<option key={index}>{option}</option>
+						)}
+					</Field>
+					<button>Down</button>
+					<button type="button" onClick={() => dispatch(applyFilter(change('group', '')))}>X</button>
 				</td>
 				<td>
-					<Select
-						title="[Modified By]"
-						value={filter.modifiedBy}
-						data={['All', 'admin', 'user']}
-						onChange={(value) => dispatch(changeFilter({
-							key: 'modifiedBy',
-							value
-						}))}
-					/>
-					<Button text="Down" />
-					<Button text="X"
-						onClick={() => dispatch(changeFilter({
-							key: 'modifiedBy',
-							value: []
-						}))}
-					/>
+					<Field name="modifiedBy" component="select" onChange={() => dispatch(applyFilter())}>
+						<option value="">[Modified By]</option>
+						{['All', 'admin', 'user'].map((option, index) =>
+							<option key={index}>{option}</option>
+						)}
+					</Field>
+					<button>Down</button>
+					<button type="button" onClick={() => dispatch(applyFilter(change('modifiedBy', '')))}>X</button>
 				</td>
 				<td>
-					<Select
-						title="Modified Date"
-						value={filter.modifiedDate}
-						data={['All']}
-						onChange={(value) => dispatch(changeFilter({
-							key: 'modifiedDate',
-							value
-						}))}
-					/>
+					<Field name="modifiedDate" component="select" onChange={() => dispatch(applyFilter())}>
+						<option value="">Modified Date</option>
+						{['All'].map((option, index) =>
+							<option key={index}>{option}</option>
+						)}
+					</Field>
 				</td>
 				<td>
 					Save
@@ -297,7 +212,7 @@ const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
 		));
 
 		return (
-			<div>
+			<form onSubmit={handleSubmit(() => {})}>
 				<table>
 					<tbody>
 						{tableHeader}
@@ -326,9 +241,11 @@ const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
 						}))}
 					/>
 				</div>
-			</div>
+			</form>
 		);
 	}
 );
 
-export default ListForm;
+export default reduxForm({
+	form: 'filter'
+})(ListForm);
