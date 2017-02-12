@@ -44,9 +44,8 @@ export const deleteItem = data => dispatch => {
 };
 
 export const applyFilter = action => (dispatch, getState) => {
-	const promise = action ? dispatch({
-		...action,
-		payload: Promise.resolve(action.payload)
-	}) : Promise.resolve();
-	promise.then(() => dispatch(fetch(getState().form.filter.values)));
+	Promise.resolve(action && dispatch(action))
+		.then(() => 
+			dispatch(fetch(getState().form.filter.values))
+		);
 };

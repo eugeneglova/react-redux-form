@@ -1,16 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Input from '../components/Input';
-import Select from '../components/Select';
 import Pagination from '../components/Pagination';
-import { applyFilter, saveItem, deleteItem } from '../actions';
-import { Field, reduxForm } from 'redux-form';
+import { applyFilter } from '../actions';
+import { change } from 'redux-form';
 import Filter from './Filter';
 import ListItem from './ListItem';
 import PerPage from './PerPage';
 
 const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
-	({ dispatch, change, handleSubmit, loading, response }) => {
+	({ dispatch, loading, response }) => {
 		const tableContent = response.data && response.data.map((item, index) =>
 			<ListItem {...{ key: item.id, item, index }} />
 		);
@@ -33,7 +31,7 @@ const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
 					<Pagination
 						totalPages={response.pagination.total_pages}
 						currentPage={response.pagination.current_page}
-						onClick={(page) => dispatch(applyFilter(change('page', page)))}
+						onClick={(page) => dispatch(applyFilter(change('filter', 'page', page)))}
 					/>
 					: ''}
 					<PerPage />
@@ -43,6 +41,4 @@ const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
 	}
 );
 
-export default reduxForm({
-	form: 'filter'
-})(ListForm);
+export default ListForm;
