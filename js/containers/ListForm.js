@@ -9,14 +9,6 @@ import { Field, reduxForm } from 'redux-form';
 
 const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
 	({ dispatch, change, handleSubmit, loading, response }) => {
-		const loadingDiv = (
-			<tr>
-				<td colSpan="12">
-					<div>Loading...</div>
-				</td>
-			</tr>
-		);
-
 		const tableHeader = (
 			<tr>
 				<td>
@@ -212,10 +204,13 @@ const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
 
 		return (
 			<form onSubmit={handleSubmit(() => {})}>
+				<div>
+					{loading ? 'Loading data...' : ' '.replace(/ /g, '\u00a0')}
+				</div>
 				<table>
 					<tbody>
 						{tableHeader}
-						{loading ? loadingDiv : tableContent}
+						{tableContent}
 					</tbody>
 				</table>
 				<div>
