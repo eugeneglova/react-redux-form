@@ -1,12 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Input from '../components/Input';
-import Select from '../components/Select';
 import { saveItem, deleteItem } from '../actions';
-import { reduxForm } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 
 const ListItem = connect()(
-	({ dispatch, item, index }) => (
+	({ dispatch, item }) => (
 		<tr>
 			<td>
 				<input type="checkbox" />
@@ -15,77 +13,45 @@ const ListItem = connect()(
 				{item.comment}
 			</td>
 			<td>
-				<Select
-					data={['All', 'Deposits', 'Withdrawals']}
-					value={item.type}
-					onChange={(value) => dispatch(changeListItem({
-						key: 'type',
-						value,
-						index
-					}))}
-				/>
+				<Field name="type" component="select">
+					{['All', 'Deposits', 'Withdrawals'].map((option, index) =>
+						<option key={index}>{option}</option>
+					)}
+				</Field>
 			</td>
 			<td>
-				<Select
-					data={['All', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']}
-					value={item.day}
-					onChange={(value) => dispatch(changeListItem({
-						key: 'day',
-						value,
-						index
-					}))}
-				/>
+				<Field name="day" component="select">
+					{['All', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'].map((option, index) =>
+						<option key={index}>{option}</option>
+					)}
+				</Field>
 			</td>
 			<td>
-				<Input value={item.minAmount || item.amount}
-					onChange={(value) => dispatch(changeListItem({
-						key: 'minAmount',
-						value,
-						index
-					}))}
-				/>
+				<Field name="minAmount" placeholder="Min Amount" component="input" type="text" />
 			</td>
 			<td>
-				<Input value={item.maxAmount || item.amount}
-					onChange={(value) => dispatch(changeListItem({
-						key: 'maxAmount',
-						value,
-						index
-					}))}
-				/>
+				<Field name="maxAmount" placeholder="Min Amount" component="input" type="text" />
 			</td>
 			<td>
-				<Select
-					data={['All', 'MT4', 'MT5', 'Tradologic']}
-					value={item.platform}
-					onChange={(value) => dispatch(changeListItem({
-						key: 'platform',
-						value,
-						index
-					}))}
-				/>
+				<Field name="platform" component="select">
+					{['All', 'MT4', 'MT5', 'Tradologic'].map((option, index) =>
+						<option key={index}>{option}</option>
+					)}
+				</Field>
 			</td>
 			<td>
-				<Select
-					data={['All', 'Live20', 'Live21']}
-					value={item.server}
-					onChange={(value) => dispatch(changeListItem({
-						key: 'server',
-						value,
-						index
-					}))}
-				/>
+				<Field name="server" component="select">
+					{['All', 'Live20', 'Live21'].map((option, index) =>
+						<option key={index}>{option}</option>
+					)}
+				</Field>
 			</td>
 			<td>
-				<Select
-					data={['All', 'usd-11', 'usd-risk']}
-					value={item.group}
-					onChange={(value) => dispatch(changeListItem({
-						key: 'group',
-						value,
-						index
-					}))}
-				/>
+				<Field name="group" component="select">
+					{['All', 'usd-11', 'usd-risk'].map((option, index) =>
+						<option key={index}>{option}</option>
+					)}
+				</Field>
 			</td>
 			<td>
 				admin

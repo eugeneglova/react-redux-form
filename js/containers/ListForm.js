@@ -10,7 +10,7 @@ import PerPage from './PerPage';
 const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
 	({ dispatch, loading, response }) => {
 		const tableContent = response.data && response.data.map((item, index) =>
-			<ListItem {...{ key: item.id, item, index }} />
+			<ListItem {...{ key: index, initialValues: item, item }} />
 		);
 
 		return (
