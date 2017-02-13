@@ -3,6 +3,7 @@ import {
 	FETCH_FULFILLED,
 	FETCH_REJECTED
 } from '../constants/ActionTypes';
+import keyBy from 'lodash/keyBy';
 
 const reducer = (state = {}, action) => {
 	if (action.type === FETCH_PENDING) {
@@ -21,7 +22,10 @@ const reducer = (state = {}, action) => {
 		};
 		return {...state,
 			loading: false,
-			response: response
+			response: response,
+			initialValues: {
+				items: keyBy(data, 'id'),
+			}
 		};
 	} else if (action.type === FETCH_REJECTED) {
 		return {...state,

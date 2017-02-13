@@ -8,9 +8,9 @@ import ListItem from './ListItem';
 import PerPage from './PerPage';
 
 const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
-	({ dispatch, loading, response }) => {
+	({ dispatch, loading, response, initialValues }) => {
 		const tableContent = response.data && response.data.map((item, index) =>
-			<ListItem {...{ key: index, initialValues: item, item }} />
+			<ListItem {...{ key: index, initialValues, item }} />
 		);
 
 		return (

@@ -13,41 +13,41 @@ const ListItem = connect()(
 				{item.comment}
 			</td>
 			<td>
-				<Field name="type" component="select">
+				<Field name={`items[${item.id}].type`} component="select">
 					{['All', 'Deposits', 'Withdrawals'].map((option, index) =>
 						<option key={index}>{option}</option>
 					)}
 				</Field>
 			</td>
 			<td>
-				<Field name="day" component="select">
+				<Field name={`items[${item.id}].day`} component="select">
 					{['All', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'].map((option, index) =>
 						<option key={index}>{option}</option>
 					)}
 				</Field>
 			</td>
 			<td>
-				<Field name="minAmount" placeholder="Min Amount" component="input" type="text" />
+				<Field name={`items[${item.id}].minAmount`} placeholder="Min Amount" component="input" type="text" />
 			</td>
 			<td>
-				<Field name="maxAmount" placeholder="Min Amount" component="input" type="text" />
+				<Field name={`items[${item.id}].maxAmount`} placeholder="Min Amount" component="input" type="text" />
 			</td>
 			<td>
-				<Field name="platform" component="select">
+				<Field name={`items[${item.id}].platform`} component="select">
 					{['All', 'MT4', 'MT5', 'Tradologic'].map((option, index) =>
 						<option key={index}>{option}</option>
 					)}
 				</Field>
 			</td>
 			<td>
-				<Field name="server" component="select">
+				<Field name={`items[${item.id}].server`} component="select">
 					{['All', 'Live20', 'Live21'].map((option, index) =>
 						<option key={index}>{option}</option>
 					)}
 				</Field>
 			</td>
 			<td>
-				<Field name="group" component="select">
+				<Field name={`items[${item.id}].group`} component="select">
 					{['All', 'usd-11', 'usd-risk'].map((option, index) =>
 						<option key={index}>{option}</option>
 					)}
@@ -70,5 +70,5 @@ const ListItem = connect()(
 );
 
 export default reduxForm({
-	form: 'listItem'
+	form: 'list'
 })(ListItem);
