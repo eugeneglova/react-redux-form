@@ -25,22 +25,18 @@ export const addItem = () => (dispatch, getState) => {
 	});
 };
 
-const saveItemAction = data => ({
-	type: SAVE_ITEM,
-	payload: axios.post(`/api/${data.id}`, data)
-});
-
-export const saveItem = data => dispatch => {
-	dispatch(saveItemAction(data));
+export const saveItem = id => (dispatch, getState) => {
+	dispatch({
+		type: SAVE_ITEM,
+		payload: axios.post(`/api/${id}`, getState().form.list.values.items[id])
+	});
 };
 
-const deleteItemAction = data => ({
-	type: DELETE_ITEM,
-	payload: axios.delete(`/api/${data.id}`)
-});
-
-export const deleteItem = data => dispatch => {
-	dispatch(deleteItemAction(data));
+export const deleteItem = id => dispatch => {
+	dispatch({
+		type: DELETE_ITEM,
+		payload: axios.delete(`/api/${id}`)
+	});
 };
 
 export const applyFilter = action => (dispatch, getState) => {

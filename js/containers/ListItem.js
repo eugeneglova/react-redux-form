@@ -60,10 +60,10 @@ const ListItem = connect()(
 				{item.updated_at}
 			</td>
 			<td>
-				<button onClick={() => dispatch(saveItem(item))}>Save</button>
+				<button onClick={() => dispatch(saveItem(item.id))}>Save</button>
 			</td>
 			<td>
-				<button onClick={() => dispatch(deleteItem(item))}>Delete</button>
+				<button onClick={() => dispatch(deleteItem(item.id))}>Delete</button>
 			</td>
 		</tr>
 	)
