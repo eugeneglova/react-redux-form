@@ -15,8 +15,8 @@ const ListForm = connect(({ dataFromAPI }) => dataFromAPI)(
 
 		return (
 			<div>
-				<div>
-					{loading ? 'Loading data...' : ' '.replace(/ /g, '\u00a0')}
+				<div style={{visibility: loading ? 'visible' : 'hidden'}}>
+					Loading data...
 				</div>
 				<table>
 					<tbody>
